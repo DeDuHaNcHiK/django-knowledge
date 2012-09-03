@@ -173,6 +173,9 @@ class Question(KnowledgeBase):
         import unidecode
 
         def to_eng(str):
+            '''
+            Transliterates a string and converts it into lowercase characters.
+            '''
             str = unidecode.unidecode(str).lower()
             return str
 
