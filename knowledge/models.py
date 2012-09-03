@@ -170,9 +170,14 @@ class Question(KnowledgeBase):
     @models.permalink
     def get_absolute_url(self):
         from django.template.defaultfilters import slugify
+        import unidecode
+
+        def to_eng(str):
+            str = unidecode.unidecode(str).lower()
+            return str
 
         if settings.SLUG_URLS:
-            return ('knowledge_thread', [self.id, slugify(self.title)])
+            return ('knowledge_thread', [self.id, slugify(to_eng(self.title))])
         else:
             return ('knowledge_thread_no_slug', [self.id])
 
